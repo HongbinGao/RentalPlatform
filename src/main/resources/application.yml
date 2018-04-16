@@ -5,7 +5,7 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/rental_platform
+    url: jdbc:mysql://localhost:3306/rental_platform?useSSL=false
     username: root
     password: root
     tomcat:
@@ -13,4 +13,4 @@ spring:
       max-active: 30
 mybatis:
   mapper-locations:
-  - classpath://mapper/**/*.xml
+  - classpath:/mapper/**/*.xml
