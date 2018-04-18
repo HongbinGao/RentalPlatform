@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div>
+		<input type="hidden" id="provinceL"> <select id="province">
+			<option v-for="item in province" v-bind:value="item.id">{{item.name}}</option>
+		</select>
+		<ul id="city">
+			<li v-for="item in city">{{item.name}}</li>
+		</ul>
+		<ul id="district">
+			<li v-for="item in district">{{item.name}}</li>
+		</ul>
+	</div>
+</body>
+<script type="text/javascript" th:src="@{/js/jquery/jquery-3.3.1.js}"></script>
+<script type="text/javascript" th:src="@{/js/vue/vue.js}"></script>
+<script type="text/javascript" th:inline="javascript">
+	var provinceListPath = [[@{area/provinceList}]];
+</script>
+<script type="text/javascript">
+		var list ;
+		$.ajax({
+			url : provinceListPath,
+			method : 'get',
+			async : false,
+			success : function(result) {
+				list = result;
+			}
+		});
+		console.log(list)
+	var initProvince = new Vue({
+		el : "#province",
+		data : {
+			province : p
+		}
+	});
+	console.log(initProvince.province);
+</script>
+</html>

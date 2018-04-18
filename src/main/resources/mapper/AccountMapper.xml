@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rp.account.mapper.AccountMapper">
+
+	<resultMap type="com.rp.account.entity.Account" id="BaseResultMap">
+		<id column="id" jdbcType="INTEGER" property="id" />
+  		<result column="username" jdbcType="VARCHAR" property="username"/>
+  		<result column="password" jdbcType="VARCHAR" property="password"/>
+  		<result column="phone" jdbcType="VARCHAR" property="phone"/>
+  		<result column="create_time" jdbcType="BIGINT" property="createTime"/>
+  		<result column="update_time" jdbcType="BIGINT" property="updateTime"/>
+	</resultMap>
+
+	<select id="selectAccountByUsername" resultMap="BaseResultMap">
+		select *
+		from account where username = #{username}
+	</select>
+
+	<select id="selectAccountByPhone" resultMap="BaseResultMap">
+		select *
+		from account where phone = #{phone}
+	</select>
+
+	<insert id="insertAccount" parameterType="com.rp.account.entity.Account" keyProperty="id" useGeneratedKeys="true">
+		insert into account
+		(username,password,phone,create_time,update_time)
+		value
+		(
+			#{username,jdbcType=VARCHAR},
+			#{password,jdbcType=VARCHAR},
+			#{phone,jdbcType=VARCHAR},
+			#{createTime,jdbcType=BIGINT},
+			#{updateTime,jdbcType=BIGINT}
+		)
+	</insert>
+	
+</mapper>
