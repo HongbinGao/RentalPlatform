@@ -14,22 +14,27 @@ label {
 <body>
 	<form id="accountForm">
 		<div>
-			<label>用户名：</label><input type="text" v-model="username" />
-			<div>{{verifyUsername}}</div>
+			<label>用户名：</label>
+			<input type="text" v-model="username" />
+			<small>{{usernameType.message}}</small>
 		</div>
 		<div>
-			<label>密码：</label><input type="password" v-model="password" /><label></label>
+			<label>密码：</label>
+			<input type="password" v-model="password" />
+			<small>{{passwordType.message}}</small>
 		</div>
 		<div>
-			<label>再次输入密码：</label><input type="password" v-model="confirmpass" /><label
-				id="confirmPass"></label>
+			<label>再次输入密码：</label>
+			<input type="password" v-model="confirmPass" />
+			<small>{{confirmPassType.message}}</small>
 		</div>
 		<div>
-			<label>手机号：</label><input type="text" v-model="phone" /><label
-				id="verifyUsername"></label>
+			<label>手机号：</label>
+			<input type="text" v-model="phone" />
+			<small>{{phoneType.message}}</small>
 		</div>
 		<div>
-			<button type="button">提交</button>
+			<button type="button" v-on:click="submit">提交</button>
 		</div>
 		<div>
 			<button type="reset">重置</button>
@@ -38,11 +43,12 @@ label {
 </body>
 <script type="text/javascript" th:src="@{/js/jquery/jquery-3.3.1.js}"></script>
 <script type="text/javascript" th:src="@{/js/vue/vue.js}"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
 <script type="text/javascript" th:src="@{/js/signup.js}"></script>
 <script type="text/javascript" th:inline="javascript">
-	var verifyUsernamePath = [[@{account/verifyUsername}]];
+	var verifyUsernamePath =[[@{account/verifyUsername}]];
+	var verifyPhonePath = [[@{account/verifyPhone}]];
+	var signUpPath = [[@{account/signUp}]];
 </script>
 </html>

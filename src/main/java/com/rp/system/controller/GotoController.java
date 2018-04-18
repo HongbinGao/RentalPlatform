@@ -24,4 +24,10 @@ public class GotoController {
 	public String gotoSignIn() {
 		return "html/system/signin";
 	}
+	
+	
+	@GetMapping("goto")
+	public String area() {
+		return "html/area";
+	}
 }

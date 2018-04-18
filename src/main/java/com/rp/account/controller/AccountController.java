@@ -1,13 +1,15 @@
 package com.rp.account.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.rp.account.entity.Account;
 import com.rp.account.service.AccountService;
 
 /**
- * 用户控制器
+ * 账号控制器
  * 
  * @author 高洪滨
  *
@@ -24,9 +26,9 @@ public class AccountController {
 	 * 
 	 * @param username
 	 */
-	@RequestMapping("verifyUsername")
+	@PostMapping("verifyUsername")
 	public boolean verifyUsername(String username) {
-		return service.verifyUsername();
+		return service.verifyUsername(username);
 	}
 
 	/**
@@ -34,15 +36,17 @@ public class AccountController {
 	 * 
 	 * @param phoneNumber
 	 */
-	public void verifyPhone(Integer phoneNumber) {
-
+	@PostMapping("verifyPhone")
+	public boolean verifyPhone(String phone) {
+		return service.verifyPhone(phone);
 	}
 
 	/**
 	 * 注册
 	 */
-	public void signUp() {
-
+	@PostMapping("signUp")
+	public void signUp(Account account) {
+		service.signUp(account);
 	}
 
 }
