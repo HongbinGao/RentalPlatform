@@ -1,16 +1,19 @@
 package com.rp.system.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import com.rp.house.vo.HouseListSearchVo;
 
 @Controller
 public class GotoController {
 
-	@GetMapping("gotoTest")
-	public String gotoTest() {
-		return "html/test";
+	@GetMapping("")
+	public String home() {
+		return "html/index";
 	}
-	
+
 	@GetMapping("gotoHome")
 	public String gotoHome() {
 		return "html/index";
@@ -18,16 +21,22 @@ public class GotoController {
 
 	@GetMapping("gotoSignUp")
 	public String gotoSignUp() {
-		return "html/system/signup";
+		return "html/signup";
 	}
 
+	@GetMapping("gotoSignIn")
 	public String gotoSignIn() {
-		return "html/system/signin";
+		return "html/signin";
 	}
-	
-	
-	@GetMapping("goto")
-	public String area() {
-		return "html/area";
+
+	@GetMapping("gotoPublishHouse")
+	public String gotoPublishHouse() {
+		return "html/publishHouse";
+	}
+
+	@GetMapping("gotoHouseList")
+	public String gotoHouse(HouseListSearchVo search, ModelMap model) {
+		model.addAttribute(search);
+		return "html/houselist";
 	}
 }

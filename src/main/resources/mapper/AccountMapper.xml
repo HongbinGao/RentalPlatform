@@ -34,4 +34,20 @@
 		)
 	</insert>
 	
+	<select id="selectAccountByExample" parameterType="com.rp.account.vo.AccountVo"
+	resultMap="BaseResultMap">
+		select account.* from account
+		<if test=" role == 1 ">
+			left join agency_account aa on aa.acount_id = account.id
+		</if>
+		<where>
+			account.username = #{username}
+			and account.password = #{password}
+			<if test=" role == 1 ">
+				and aa.agency_id is not null
+			</if>
+		</where>
+		limit 1
+	</select>
+	
 </mapper>

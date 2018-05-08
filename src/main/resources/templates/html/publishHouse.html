@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>发布房源</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/main.css}" />
+</head>
+<body>
+	<div>
+		<form action="" id="house">
+			<div>
+				<label>地区：</label><select name="proviceId"><option>请选择</option></select>
+				<select name="cityId"><option>请选择</option></select> <select name=""><option>请选择</option></select>
+			</div>
+			<div>
+				<label>小区名称：</label><input type="text" name="xiaoquName">
+			</div>
+			<div>
+				<label>楼层：</label><input type="number" class="little_input"
+					name="louceng" v-model="floor">
+			</div>
+			<div>
+				<label>面积：</label><input type="number" class="little_input"
+					name="mianji" v-model="area">
+			</div>
+			<div>
+				<label>格局：</label><input type="number" class="little_input"
+					name="shi" v-model="shi"><label>室</label> <input type="number"
+					class="little_input" name="ting" v-model="ting"><label>厅</label> <input
+					type="number" class="little_input" name="wei" v-model="wei"><label>卫</label>
+			</div>
+			<div>
+				<label>租金：</label><input type="number" class="little_input"
+					name="rent">
+			</div>
+			<div>
+				<label>最早入住时间：</label><input type="date" name="ruzhushijian"
+					v-model="checkInDate">
+			</div>
+			<div>
+				<label>联系人姓名：</label><input type="text" name="lianxirenName"
+					v-model="contactName">
+			</div>
+			<div>
+				<label>联系人电话：</label><input type="text" name="lianxirenPhone"
+					v-model="contactPhone">
+			</div>
+		</form>
+	</div>
+</body>
+<script type="text/javascript">
+	
+</script>
+</html>

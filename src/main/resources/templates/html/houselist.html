@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>房源</title>
+<style type="text/css">
+body {
+	width: 1024px;
+	margin: auto;
+}
+
+li {
+	list-style-type: none;
+}
+</style>
+</head>
+<body>
+	<div>如果已经登录显示登录信息，如果没有登录显示登录按钮</div>
+	<div>
+		<label>当前城市：</label>
+		<select name="cityId">
+			<option>请选择</option>
+		</select>
+		<input type="text" name="keyword">
+		<button>search</button>
+	</div>
+	<div>
+		<label>区域：</label>
+		<select name="districtId">
+			<option>请选择</option>
+		</select>
+	</div>
+	<div>
+		<ul>
+			<li>
+				<div>标题</div>
+				<div>位置</div>
+				<div>属性</div>
+			</li>
+		</ul>
+	</div>
+</body>
+</html>
