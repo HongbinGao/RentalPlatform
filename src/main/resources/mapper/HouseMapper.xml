@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rp.house.mapper.HouseMapper">
+
+	<select id="selectHouseBySearch"
+		parameterType="com.rp.house.vo.HouseListSearchVo"
+		resultType="com.rp.house.vo.HouseVo">
+		select * from house
+		<where>
+			<if test=" cityId != null ">
+				and city_id = #{cityId}
+			</if>
+			<if test=" districtId != null ">
+				and district_id = #{districtId}
+			</if>
+			<if test=" keyword != null and keyword != '' ">
+				and address like concat('%',#{keyword},'%')
+			</if>
+		</where>
+	</select>
+
+	<update id="updateHouseStatus">
+		update house 
+		set 
+		status = #{status} ,
+		update_time = now()
+		<if test=" status == 4 ">
+			, expire = #{expire}
+		</if>
+		where id = #{id}
+	</update>
+</mapper>

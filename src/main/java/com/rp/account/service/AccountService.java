@@ -1,32 +1,77 @@
 package com.rp.account.service;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.rp.account.dao.AccountDao;
 import com.rp.account.entity.Account;
+import com.rp.account.mapper.AccountMapper;
+import com.rp.account.vo.AccountVo;
 
 @Service
 public class AccountService {
 
 	@Autowired
-	private AccountDao dao;
+	private AccountMapper mapper;
 
-	public boolean verifyUsername(String username) {
-		Account account = dao.selectAccountByUsername(username);
-		return false;
+	/**
+	 * 检查用户名是否重复<br>
+	 * true用户名重复<br>
+	 * false用户名不重复
+	 * 
+	 * @param username
+	 * @return
+	 */
+	public Boolean verifyUsernameIsHave(String username) {
+		Account account = mapper.selectAccountByUsername(username);
+		;
+		if (account.getId() != null)
+			return true;
+		else
+			return false;
 	}
 
-	public boolean verifyPhone(String phone) {
-		Account account = dao.selectAccountByPhone(phone);
-		return false;
+	/**
+	 * 检查手机号是否重复<br>
+	 * true手机号重复<br>
+	 * false手机号不重复
+	 * 
+	 * @param phone
+	 * @return
+	 */
+	public Boolean verifyPhoneIsHave(String phone) {
+		Account account = mapper.selectAccountByPhone(phone);
+		if (account.getId() != null)
+			return true;
+		else
+			return false;
 	}
 
-	public void signUp(Account account) {
-		dao.insertAccount(account);
-		if (account.getId() != null) {
-			System.out.println("注册成功" + account.getId());
-		}
+	/**
+	 * 注册
+	 * 
+	 * @param account
+	 */
+	public Boolean signUp(Account account) {
+		mapper.insertAccount(account);
+		if (account.getId() == null)
+			return false;
+		return true;
+	}
+
+	/**
+	 * 登录验证
+	 * 
+	 * @param account
+	 * @param session
+	 */
+	public Boolean signIn(AccountVo vo, HttpSession session) {
+		Account account = mapper.selectAccountByExample(vo);
+		if (account.getId() == null)
+			return false;
+		session.setAttribute("account", account);
+		return true;
 	}
 
 }

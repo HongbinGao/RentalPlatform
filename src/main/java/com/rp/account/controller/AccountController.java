@@ -1,5 +1,9 @@
 package com.rp.account.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -7,6 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.rp.account.entity.Account;
 import com.rp.account.service.AccountService;
+import com.rp.account.vo.AccountVo;
+import com.rp.common.constant.Constant;
 
 /**
  * 账号控制器
@@ -14,8 +20,8 @@ import com.rp.account.service.AccountService;
  * @author 高洪滨
  *
  */
-@RestController()
-@RequestMapping("account")
+@RestController
+@RequestMapping(value = "account")
 public class AccountController {
 
 	@Autowired
@@ -26,9 +32,9 @@ public class AccountController {
 	 * 
 	 * @param username
 	 */
-	@PostMapping("verifyUsername")
-	public boolean verifyUsername(String username) {
-		return service.verifyUsername(username);
+	@PostMapping(value = "verifyUsernameIsHave")
+	public boolean verifyUsernameIsHave(String username) {
+		return service.verifyUsernameIsHave(username);
 	}
 
 	/**
@@ -36,17 +42,29 @@ public class AccountController {
 	 * 
 	 * @param phoneNumber
 	 */
-	@PostMapping("verifyPhone")
-	public boolean verifyPhone(String phone) {
-		return service.verifyPhone(phone);
+	@PostMapping(value = "verifyPhoneIsHave")
+	public boolean verifyPhoneIsHave(String phone) {
+		return service.verifyPhoneIsHave(phone);
 	}
 
 	/**
 	 * 注册
 	 */
-	@PostMapping("signUp")
+	@PostMapping(value = "signUp")
 	public void signUp(Account account) {
 		service.signUp(account);
+	}
+
+	/**
+	 * 登录
+	 * 
+	 * @param map
+	 */
+	@PostMapping(value = "signIn")
+	public String signIn(AccountVo account, HttpSession session, HttpServletRequest request,
+			HttpServletResponse response) {
+		service.signIn(account, session);
+		return "redirect:" + Constant.BACK_URL;
 	}
 
 }

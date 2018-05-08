@@ -3,6 +3,7 @@ package com.rp.account.mapper;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.rp.account.entity.Account;
+import com.rp.account.vo.AccountVo;
 
 /**
  * mybatis mapper
@@ -18,5 +19,7 @@ public interface AccountMapper {
 	Account selectAccountByPhone(String phone);
 
 	int insertAccount(Account account);
+
+	Account selectAccountByExample(AccountVo account);
 
 }
